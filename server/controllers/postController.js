@@ -18,11 +18,10 @@ const createPost = async (req, res) => {
     const photoUrl = await cloudinary.uploader.upload(photo);
 
     const newPost = await Post.create({ name, prompt, photo: photoUrl.url });
-    console.log(newPost)
+    
 
     res.status(201).json({ success: true, data: newPost });
   } catch (error) {
-    console.log(error)
     res.status(500).json({ success: false, message: error });
   }
 };
